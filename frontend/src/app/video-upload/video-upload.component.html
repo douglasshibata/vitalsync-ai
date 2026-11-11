@@ -1,0 +1,13 @@
+<div>
+  <button mat-raised-button color="primary" (click)="startRecording()" [disabled]="isRecording">Start Recording</button>
+  <button mat-raised-button color="warn" (click)="stopRecordingAndUpload()" [disabled]="!isRecording">Stop and Upload</button>
+</div>
+
+<div *ngIf="uploadProgress > 0">
+  <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+  <span>{{ uploadProgress }}%</span>
+</div>
+
+<div *ngIf="uploadMessage">
+  <p>{{ uploadMessage }}</p>
+</div>

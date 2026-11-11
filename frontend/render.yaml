@@ -1,0 +1,12 @@
+services:
+  - type: static
+    name: video-conference-app # Nome do seu serviço no Render
+    env: static
+    buildCommand: npm install && npm run build
+    publishPath: dist/video-conference-app/browser # Ajuste para o nome do seu projeto
+    pullRequestPreviewsEnabled: true
+    routes:
+      # Regra de Rewrite para Single Page Application (SPA)
+      - type: rewrite
+        source: /*
+        destination: /index.html

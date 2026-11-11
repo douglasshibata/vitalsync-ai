@@ -1,0 +1,42 @@
+services:
+  backend:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: vitalsync-backend
+    working_dir: /app/backend
+    volumes:
+      - .:/app
+      - maven_repo:/root/.m2
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - AI_ENGINE_URL=http://ai-engine:8000
+    command: mvn spring-boot:run
+    restart: unless-stopped
+
+  ai-engine:
+    image: python:3.11-slim
+    container_name: vitalsync-ai-engine
+    working_dir: /app/ai-engine
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_PORT=8000
+    command: sh -c "pip install --no-cache-dir fastapi uvicorn && uvicorn main:app --host 0.0.0.0 --port 8000"
+    restart: unless-stopped
+
+  frontend:
+    image: node:20-alpine
+    container_name: vitalsync-frontend
+    working_dir: /app/frontend
+    volumes:
+      - .:/app
+    ports:
+      - "4200:4200"
+    command: sh -c "npm install && npm start -- --host 0.0.0.0 --port 4200"
+    restart: unless-stopped
+
+volumes:
+  maven_repo:

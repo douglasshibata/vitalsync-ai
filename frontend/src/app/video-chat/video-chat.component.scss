@@ -1,0 +1,38 @@
+.video-chat-container {
+  padding: 2rem;
+
+  .video-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+
+    .video-item {
+      width: 48%;
+      text-align: center;
+
+      video {
+        width: 100%;
+        border-radius: 8px;
+        background-color: #000;
+      }
+    }
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+
+    .p-button {
+      margin: 0.25rem;
+    }
+  }
+
+  .p-input-icon-left {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<div class="video-chat-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Angular Video Conference</mat-card-title>
+      <mat-card-subtitle>Your Peer ID: {{ peerId }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="video-wrapper">
+        <div class="video-item">
+          <video #localVideo autoplay muted playsinline></video>
+          <p>Local</p>
+        </div>
+        <div class="video-item">
+          <video #remoteVideo autoplay playsinline></video>
+          <p>Remote</p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="controls">
+        <button mat-raised-button color="warn" (click)="endCall()" [disabled]="!isCallStarted">
+          <mat-icon>call_end</mat-icon> End
+        </button>
+        <button mat-icon-button (click)="toggleAudio()" [disabled]="!isCallStarted">
+          <mat-icon>{{ isMuted ? 'mic_off' : 'mic' }}</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleVideo()" [disabled]="!isCallStarted">
+          <mat-icon>{{ isVideoOff ? 'videocam_off' : 'videocam' }}</mat-icon>
+        </button>
+        <button mat-raised-button (click)="startRecording()" [disabled]="!isCallStarted || isRecording">
+          <mat-icon>play_arrow</mat-icon> Start Recording
+        </button>
+        <button mat-raised-button (click)="stopRecording()" [disabled]="!isRecording">
+          <mat-icon>stop</mat-icon> Stop Recording
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

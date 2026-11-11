@@ -1,0 +1,31 @@
+# Java
+target/
+*.class
+.settings/
+.classpath
+.project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+env/
+.pytest_cache/
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-error.log*
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Project specific
+uploads/
+/app/videos
+*.txt
